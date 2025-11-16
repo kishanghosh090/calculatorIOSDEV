@@ -42,5 +42,5 @@ enum Keys: String {
 
 
 enum Opretion {
-    case add, subtract,multiply,divide
+    case add, subtract,multiply,divide, none
 }
