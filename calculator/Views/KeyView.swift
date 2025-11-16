@@ -94,7 +94,56 @@ struct KeyView: View {
             
     }
     func didTap (button: Keys){
-        print("hitesh")
+        switch button {
+        case .add, .subtract, .multiply, .divide, .equal:
+            if button == .add{
+                self.currentOpretion = .add
+                self.runningNumber = Int(self.value) ?? 0
+            }else if button == .subtract {
+                self.currentOpretion = .subtract
+                self.runningNumber = Int(self.value) ?? 0
+            }
+            else if button == .multiply {
+                self.currentOpretion = .multiply
+                self.runningNumber = Int(self.value) ?? 0
+            }
+            else if button == .divide {
+                self.currentOpretion = .divide
+                self.runningNumber = Int(self.value) ?? 0
+            }
+            else if button == .equal {
+                let runningValue = self.runningNumber
+                let currentValue = Int(self.value) ?? 0
+                switch self.currentOpretion {
+                case .add:
+                    self.value = "\(runningValue + currentValue)"
+                case .subtract:
+                    self.value = "\(runningValue - currentValue)"
+                case .multiply:
+                    self.value = "\(runningValue * currentValue)"
+                case .divide:
+                    self.value = "\(runningValue / currentValue)"
+                case .none:
+                    self.value = "error occur"
+                }
+            }
+            if button != .equal {
+                self.value = "0"
+            }
+        case .clear:
+            self.value = "\(0)"
+            runningNumber = 0
+            currentOpretion = .none
+        default:
+            let number = button.rawValue
+            if self.value == "0"{
+                value = number
+            }else{
+                self.value = "\(self.value)\(number)"
+            }
+            
+            
+        }
     }
 }
 
